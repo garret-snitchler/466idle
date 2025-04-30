@@ -9,16 +9,22 @@ export class ClickerView {
 
         this.currencyText = ViewOperations.createElement('p', 'currencyText')
 
+        this.currencyPerSecondText = ViewOperations.createElement('p', 'currencyPerSecondText')
+
         this.currencyButton = ViewOperations.createElement('button')
         this.currencyButton.textContent = 'Get Currency'
 
-        this.sectionRoot.append(this.title, this.currencyText, this.currencyButton)
+        this.sectionRoot.append(this.title, this.currencyText, this.currencyPerSecondText, this.currencyButton)
 
         ViewOperations.addStyle('clicker.css')
     }
 
     displayCurrency(currency) {
-        this.currencyText.textContent = currency
+        this.currencyText.textContent = `$${currency}`
+    }
+
+    displayCPS(currencyPerSecond) {
+        this.currencyPerSecondText.textContent = `$${currencyPerSecond} per second`
     }
 
     bindClickCurrency(handler) {

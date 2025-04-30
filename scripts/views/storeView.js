@@ -20,6 +20,7 @@ export class StoreView{
     buildPurchaseItem(item) {
         let element = ViewOperations.createElement('button', 'storeElement')
         element.disabled = item.disabled
+        element.id = item.name
 
         let itemDesc = ViewOperations.createElement('p', 'storeElementText')
         itemDesc.textContent = item.name

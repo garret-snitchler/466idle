@@ -2,7 +2,8 @@ export class Model {
     constructor() {
         this.state = {
             currency: 0,
-            currencyPerClick: 1
+            currencyPerClick: 1,
+            currencyPerSecond: 0
             /**
              * State should include:
              * - Currency
@@ -21,7 +22,16 @@ export class Model {
         this.onCurrencyChanged(this.state.currency)
     }
 
+    incrementCurrencyPerSec(value) {
+        this.state.currencyPerSecond += value
+        this.onCPSChanged(this.state.currencyPerSecond)
+    }
+
     bindCurrencyChanged(callback) {
         this.onCurrencyChanged = callback
+    }
+
+    bindCPSChanged(callback) {
+        this.onCPSChanged = callback
     }
 }

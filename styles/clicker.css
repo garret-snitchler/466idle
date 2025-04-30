@@ -2,4 +2,9 @@ p.currencyText {
     width: 100%;
     text-align: center;
     font-size: 1.5rem;
+    margin-bottom: 0px;
+}
+
+p.currencyPerSecondText {
+    margin-bottom: 2rem;
 }

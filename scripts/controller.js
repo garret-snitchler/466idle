@@ -5,13 +5,19 @@ export class Controller {
         this.clickerView = view.clicker
         
         this.onCurrencyChanged(0)
+        this.onCPSChanged(0)
 
         this.clickerView.bindClickCurrency(this.handleClickCurrency)
         this.model.bindCurrencyChanged(this.onCurrencyChanged)
+        this.model.bindCPSChanged(this.onCPSChanged)
     }
 
     onCurrencyChanged = (currency) => {
         this.clickerView.displayCurrency(currency)
+    }
+
+    onCPSChanged = (currencyPerSecond) => {
+        this.clickerView.displayCPS(currencyPerSecond)
     }
 
     handleClickCurrency = () => {
