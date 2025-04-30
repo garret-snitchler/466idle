@@ -2,7 +2,6 @@ import { ViewOperations } from "./viewOperations.js"
 
 export class ClickerView {
     constructor() {
-        // Get the right container
         this.sectionRoot = ViewOperations.getElement('#clickerContainer')
 
         this.title = ViewOperations.createElement('h1')

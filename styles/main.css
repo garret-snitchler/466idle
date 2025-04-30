@@ -23,7 +23,7 @@ div#autoGeneratorContainer {
     width: 50%;
 }
 
-div#shopContainer {
+div#storeContainer {
     display: flex;
     flex-direction: column;
     width: 20%;
