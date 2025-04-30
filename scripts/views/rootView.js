@@ -4,9 +4,9 @@ import { ViewOperations } from "./viewOperations.js"
 
 export class RootView {
     constructor() {
-        ViewOperations.addStyle('main.css')
-
         this.constructSubViews()
+
+        ViewOperations.addStyle('main.css')
     }
 
     constructSubViews() {

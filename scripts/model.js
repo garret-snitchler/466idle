@@ -1,5 +1,6 @@
 export class Model {
     constructor() {
+        // Instantiate State
         this.state = {
             currency: 0,
             currencyPerClick: 1,
