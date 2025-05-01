@@ -23,6 +23,12 @@ export class Model {
         this.onCurrencyChanged(this.state.currency)
     }
 
+    // is called by controller every second
+    addCurrencyPerSecond() {
+        this.state.currency += this.state.currencyPerSecond
+        this.onCurrencyChanged(this.state.currency);
+    }
+
     incrementCurrencyPerSec(value) {
         this.state.currencyPerSecond += value
         this.onCPSChanged(this.state.currencyPerSecond)
