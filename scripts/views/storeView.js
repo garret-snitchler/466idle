@@ -10,25 +10,33 @@ export class StoreView{
         this.sectionRoot.append(this.title)
 
         ViewOperations.addStyle('store.css')
-
-        // These will eventually be populated by events passed from the controller
-        this.buildPurchaseItem({ name: 'Clicker', price: 1, disabled: false })
-        this.buildPurchaseItem({ name: 'Generator', price: 10, disabled: true })
     }
 
-    // item: { name: string, price: number, disabled: bool }
-    buildPurchaseItem(item) {
-        let element = ViewOperations.createElement('button', 'storeElement')
-        element.disabled = item.disabled
-        element.id = item.name
+    displayStore(storeMap) {
+        for (const value of storeMap.values()) {
+            if (document.getElementById(value.name) == null) {
+                let element = ViewOperations.createElement('button', 'storeElement')
+                element.id = value.name
+    
+                let itemDesc = ViewOperations.createElement('p', 'storeElementText')
+                itemDesc.textContent = value.name
+                
+                let itemPrice = ViewOperations.createElement('p', 'storeElementText')
+                itemPrice.textContent = value.price
+    
+                element.append(itemDesc, itemPrice)
+                this.sectionRoot.append(element)
+            }
+        }
+    }
 
-        let itemDesc = ViewOperations.createElement('p', 'storeElementText')
-        itemDesc.textContent = item.name
-
-        let itemPrice = ViewOperations.createElement('p', 'storeElementText')
-        itemPrice.textContent = item.price
-
-        element.append(itemDesc, itemPrice)
-        this.sectionRoot.append(element)
+    bindPurchase(handler) {
+        var elements = document.getElementsByClassName("storeElement")
+        for (var element of elements) {
+            element.addEventListener('click', event => {
+                event.preventDefault()
+                handler(event.target.id)
+            })
+        }
     }
 }
