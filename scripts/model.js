@@ -49,9 +49,7 @@ export class Model {
     itemCanBePurchased(name) {
         let itemPrice = this.state.storeMap.get(name).price
         if (itemPrice <= this.state.currency) {
-            return true
-        } else {
-            return false
+            this.itemPurchased(name)
         }
     }
 
@@ -68,7 +66,10 @@ export class Model {
         }
         this.chargeCurrency(this.state.storeMap.get(name).price)
         this.incrementCurrencyPerSec(this.state.storeMap.get(name).cps)
-        //TODO: NEEDS TO UPDATE VIEW OF OWNED ITEMS
+                
+        if (this.onOwnedMapChanged) {
+            this.onOwnedMapChanged(name, this.state.ownedMap.get(name))
+        }
     }
 
     bindCurrencyChanged(callback) {
@@ -81,5 +82,9 @@ export class Model {
 
     bindStoreChanged(callback) {
         this.onStoreChanged = callback
+    }
+
+    bindOwnedMapChanged(callback) {
+        this.onOwnedMapChanged = callback
     }
 }

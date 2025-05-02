@@ -4,6 +4,7 @@ export class Controller {
         this.view = view
         this.clickerView = view.clicker
         this.storeView = view.store
+        this.generatorView = view.generator
         
         // Send Initial State Values to View
         this.onCurrencyChanged(0)
@@ -19,6 +20,7 @@ export class Controller {
         this.model.bindCurrencyChanged(this.onCurrencyChanged)
         this.model.bindCPSChanged(this.onCPSChanged)
         this.model.bindStoreChanged(this.onStoreChanged)
+        this.model.bindOwnedMapChanged(this.onOwnedMapChanged)
 
         // set timer that runs the model's currency per second addition every 1 second
         setInterval(() => this.model.addCurrencyPerSecond(), 1000)
@@ -30,9 +32,7 @@ export class Controller {
     }
 
     handleStorePurchase = (name) => {
-        if (this.model.itemCanBePurchased(name)) {
-            this.model.itemPurchased(name)   
-        }
+        this.model.itemCanBePurchased(name)
     } 
 
     /**ON STATE VALUE CHANGED EVENT LISTENERS */
@@ -42,6 +42,10 @@ export class Controller {
 
     onCPSChanged = (currencyPerSecond) => {
         this.clickerView.displayCPS(currencyPerSecond)
+    }
+
+    onOwnedMapChanged = (name, count) => {
+        this.view.generator.addGenerator(name, count)
     }
 
     // as of project the only time the storeMap changes is on initialization, but it's good to stick to the patterns
