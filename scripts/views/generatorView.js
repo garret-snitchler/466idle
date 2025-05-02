@@ -43,7 +43,16 @@ export class GeneratorView {
       container.append(heading, paragraph, button)
       this.sectionRoot.append(container)
     }
+  }
 
-    /**BIND EVENT LISTENER METHODS */
+  /**BIND EVENT LISTENER METHODS */
+  bindSell(handler) {
+    this.sectionRoot.addEventListener('click', (event) => {
+      const button = event.target.closest('.sell-button')
+      if (button) {
+        const itemName = button.id.replace('-sell', '')
+        handler(itemName)
+      }
+    })
   }
 }

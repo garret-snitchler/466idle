@@ -8,8 +8,8 @@ export class Model {
             currencyPerClick: 1,
             currencyPerSecond: 0,
             storeMap: new Map([
-                ["clicker", new StoreItem("clicker", 1, 1, 1)],
-                ["generator", new StoreItem("generator", 10, 10, 10)]
+                ["clicker", new StoreItem("clicker", 1, 1, 1, 1)],
+                ["generator", new StoreItem("generator", 10, 10, 10, 10)]
             ]),
             ownedMap: new Map()
             /**
@@ -52,6 +52,13 @@ export class Model {
             this.itemPurchased(name)
         }
     }
+
+    itemCanBeSold(name) {
+        const itemCount = this.state.ownedMap.get(name)
+        if (itemCount > 0) {
+            this.itemSold(name)
+        }
+    }
     
     itemPurchased(name) {
         // item has been purchased before
@@ -72,11 +79,37 @@ export class Model {
             this.onOwnedMapChanged(name, this.state.ownedMap.get(name))
         }
     }
+    
+    itemSold(name) {
+        this.state.ownedMap.set(name, this.state.ownedMap.get(name) - 1)
+        this.state.currency += this.state.storeMap.get(name).oldPrice
+        this.incrementCurrencyPerSec(-this.state.storeMap.get(name).cps)
+        this.itemSellCalculation(name)
+
+        if (this.onCurrencyChanged) {
+            this.onCurrencyChanged(this.state.currency)
+        }
+        if (this.onCPSChanged) {
+            this.onCPSChanged(this.state.currencyPerSecond)
+        }
+        if (this.onOwnedMapChanged) {
+            this.onOwnedMapChanged(name, this.state.ownedMap.get(name))
+        }
+            
+    }
 
     itemPriceCalculation(name) {
         const item = this.state.storeMap.get(name)
         item.oldPrice = item.price
         item.price = Math.floor(item.oldPrice * 2.15)
+        this.state.storeMap.set(name, item)
+        this.onStoreChanged(this.state.storeMap)
+    }
+
+    itemSellCalculation(name) {
+        const item = this.state.storeMap.get(name)
+        item.price = item.oldPrice
+        item.oldPrice = Math.ceil(item.oldPrice / 2.15) >= item.basePrice ? Math.ceil(item.oldPrice / 2.15) : item.basePrice
         this.state.storeMap.set(name, item)
         this.onStoreChanged(this.state.storeMap)
     }

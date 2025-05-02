@@ -3,6 +3,7 @@ export class StoreItem {
     this.name = name
     this.price = price
     this.cps = cps
-    this.oldPrice = price
+    this.oldPrice = oldPrice
+    this.basePrice = price
   }
 }

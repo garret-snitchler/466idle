@@ -15,6 +15,8 @@ export class Controller {
         // Bind Player Input Event Listeners
         this.clickerView.bindClickCurrency(this.handleClickCurrency)
         this.storeView.bindPurchase(this.handleStorePurchase)
+        this.generatorView.bindSell(this.handleSellItem)
+
 
         // Bind "On Value Changed" Event Listeners
         this.model.bindCurrencyChanged(this.onCurrencyChanged)
@@ -46,6 +48,10 @@ export class Controller {
 
     onOwnedMapChanged = (name, count) => {
         this.view.generator.addGenerator(name, count)
+    }
+
+    handleSellItem = (name) => {
+        this.model.itemCanBeSold(name)
     }
 
     // as of project the only time the storeMap changes is on initialization, but it's good to stick to the patterns
