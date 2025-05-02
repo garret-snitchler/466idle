@@ -30,7 +30,9 @@ export class Controller {
     }
 
     handleStorePurchase = (name) => {
-        this.model.itemPurchased(name)
+        if (this.model.itemCanBePurchased(name)) {
+            this.model.itemPurchased(name)   
+        }
     } 
 
     /**ON STATE VALUE CHANGED EVENT LISTENERS */

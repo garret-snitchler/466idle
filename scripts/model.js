@@ -46,6 +46,15 @@ export class Model {
         this.onCPSChanged(this.state.currencyPerSecond)
     }
 
+    itemCanBePurchased(name) {
+        let itemPrice = this.state.storeMap.get(name).price
+        if (itemPrice <= this.state.currency) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     
     itemPurchased(name) {
         // item has been purchased before
