@@ -21,7 +21,7 @@ export class Controller {
         this.model.bindStoreChanged(this.onStoreChanged)
 
         // set timer that runs the model's currency per second addition every 1 second
-        setInterval(this.model.addCurrencyPerSecond, 1000)
+        setInterval(() => this.model.addCurrencyPerSecond(), 1000)
     }
     
     /**PLAYER INPUT EVENT LISTENERS */
