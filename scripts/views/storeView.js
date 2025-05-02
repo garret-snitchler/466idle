@@ -14,29 +14,54 @@ export class StoreView{
 
     displayStore(storeMap) {
         for (const value of storeMap.values()) {
-            if (document.getElementById(value.name) == null) {
+            const existing = document.getElementById(value.name)
+            if (existing == null) {
                 let element = ViewOperations.createElement('button', 'storeElement')
                 element.id = value.name
-    
-                let itemDesc = ViewOperations.createElement('p', 'storeElementText')
+
+                let staticContainer = ViewOperations.createElement('div', 'storeElementContainer')
+
+                let itemDesc = ViewOperations.createElement('span', 'storeElementText')
                 itemDesc.textContent = value.name
-                
-                let itemPrice = ViewOperations.createElement('p', 'storeElementText')
-                itemPrice.textContent = value.price
+
+                let itemCPS = ViewOperations.createElement('span', 'storeElementText')
+                itemCPS.className = 'itemCPS'
+                itemCPS.textContent = `CPS: ${value.cps}`
+
+                staticContainer.append(itemDesc, itemCPS)
+
+                let fluidContainer = ViewOperations.createElement('div', 'storeElementContainer')
+
+                let itemPrice = ViewOperations.createElement('span', 'storeElementText')
+                itemPrice.className = 'itemPrice'
+                itemPrice.textContent = `$${value.price}`
+
+                let itemSellPrice = ViewOperations.createElement('span', 'storeElementText')
+                itemSellPrice.className = 'itemSell'
+                itemSellPrice.textContent = `Sell: $${value.oldPrice}`
+
+                fluidContainer.append(itemPrice, itemSellPrice)
     
-                element.append(itemDesc, itemPrice)
+                element.append(staticContainer, fluidContainer)
                 this.sectionRoot.append(element)
+            } else {
+                const priceText = existing.querySelector('.itemPrice')
+                const sellText = existing.querySelector('.itemSell')
+                if (priceText && sellText) {
+                    priceText.textContent = `$${value.price}`
+                    sellText.textContent = `Sell: $${value.oldPrice}`
+                }
             }
         }
     }
 
     bindPurchase(handler) {
-        var elements = document.getElementsByClassName("storeElement")
-        for (var element of elements) {
-            element.addEventListener('click', event => {
-                event.preventDefault()
-                handler(event.target.id)
-            })
-        }
+        this.sectionRoot.addEventListener('click', event=> {
+            const button = event.target.closest('.storeElement');
+            if (button) {
+                event.preventDefault();
+                handler(button.id);
+            }
+        })
     }
 }

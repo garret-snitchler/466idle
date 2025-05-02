@@ -1,10 +1,13 @@
 .generator-box {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   padding: 1rem;
   border: 1px solid #000000;
-  min-width: 100px;
   text-align: left;
   gap: 100px;
+  align-items: center;
+}
+
+.sell-button {
+  height: 25px;
 }

@@ -34,8 +34,16 @@ export class GeneratorView {
       let paragraph = ViewOperations.createElement('p')
       paragraph.textContent = `Owned: ${itemCount}`
 
-      container.append(heading, paragraph)
+      let button = ViewOperations.createElement('button')
+      button.textContent = 'Sell'
+      button.id = `${item}-sell`
+      button.classList.add('sell-button')
+      
+
+      container.append(heading, paragraph, button)
       this.sectionRoot.append(container)
     }
+
+    /**BIND EVENT LISTENER METHODS */
   }
 }

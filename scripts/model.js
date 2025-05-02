@@ -8,8 +8,8 @@ export class Model {
             currencyPerClick: 1,
             currencyPerSecond: 0,
             storeMap: new Map([
-                ["clicker", new StoreItem("clicker", 1, 1)],
-                ["generator", new StoreItem("generator", 10, 10)]
+                ["clicker", new StoreItem("clicker", 1, 1, 1)],
+                ["generator", new StoreItem("generator", 10, 10, 10)]
             ]),
             ownedMap: new Map()
             /**
@@ -52,7 +52,6 @@ export class Model {
             this.itemPurchased(name)
         }
     }
-
     
     itemPurchased(name) {
         // item has been purchased before
@@ -66,10 +65,20 @@ export class Model {
         }
         this.chargeCurrency(this.state.storeMap.get(name).price)
         this.incrementCurrencyPerSec(this.state.storeMap.get(name).cps)
-                
+              
+        this.itemPriceCalculation(name)
+
         if (this.onOwnedMapChanged) {
             this.onOwnedMapChanged(name, this.state.ownedMap.get(name))
         }
+    }
+
+    itemPriceCalculation(name) {
+        const item = this.state.storeMap.get(name)
+        item.oldPrice = item.price
+        item.price = Math.floor(item.oldPrice * 2.15)
+        this.state.storeMap.set(name, item)
+        this.onStoreChanged(this.state.storeMap)
     }
 
     bindCurrencyChanged(callback) {

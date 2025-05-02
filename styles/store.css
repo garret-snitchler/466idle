@@ -1,9 +1,10 @@
 button.storeElement {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
     border-radius: 8px;
     background-color: #AAA9;
+    padding: 4px 9px;
 }
 
 button.storeElement:enabled:hover {
@@ -16,7 +17,26 @@ button.storeElement:disabled {
     opacity: 0.5;
 }
 
+div.storeElementContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100px;
+}
 
-p.storeElementText {
-    margin-inline: 1rem;
+.storeElementText {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.itemPrice {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.itemCPS,
+.itemSell {
+    font-size: 0.65em;
+    color: #555;
+    margin-left: 5px;
 }
