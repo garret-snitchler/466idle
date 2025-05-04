@@ -1,4 +1,4 @@
-import {StoreItem} from "./storeItem.js"
+import {StoreItem} from "./modelHelpers/storeItem.js"
 
 export class Model {
     constructor() {
