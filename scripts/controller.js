@@ -42,6 +42,7 @@ export class Controller {
     /**ON STATE VALUE CHANGED EVENT LISTENERS */
     onCurrencyChanged = (currency) => {
         this.clickerView.displayCurrency(currency)
+        this.storeView.itemsLocked(currency)
     }
 
     onCPCChanged = (currencyPerClick) => {

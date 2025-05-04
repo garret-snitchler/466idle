@@ -18,6 +18,7 @@ export class StoreView{
             if (existing == null) {
                 let element = ViewOperations.createElement('button', 'storeElement')
                 element.id = value.name
+                element.disabled = true
 
                 let staticContainer = ViewOperations.createElement('div', 'storeElementContainer')
 
@@ -57,6 +58,17 @@ export class StoreView{
                     sellText.textContent = `Sell: $${value.oldPrice}`
                 }
             }
+        }
+    }
+
+    itemsLocked(currency) {
+        const storeElements = this.sectionRoot.querySelectorAll('.storeElement')
+        for (const element of storeElements) {
+            const itemPrice = element.querySelector('.itemPrice')
+            const rawText = itemPrice?.textContent ?? '';
+            const numericText = rawText.replace(/[^0-9.]/g, '');  // Removes $, commas, etc.
+            const price = parseFloat(numericText);
+            element.disabled = price > currency
         }
     }
 
