@@ -9,13 +9,13 @@ export class Model {
             currencyPerSecond: 0,
             storeMap: new Map([
                 ["clicker", new StoreItem("clicker", 10, 1, 1, 1)],
-                ["generator", new StoreItem("generator", 1000, 1, 1, 1)],
-                ["engine", new StoreItem("engine", 100000, 10, 10, 10)],
-                ["dynamo", new StoreItem("dynamo", 10000000, 100, 100, 100)],
-                ["alternator", new StoreItem("alternator", 1000000000, 1000, 1000, 1000)],
-                ["turbine", new StoreItem("turbine", 100000000000, 10000, 10000, 10000)],
-                ["reactor", new StoreItem("reactor", 10000000000000, 100000, 100000, 100000)],
-                ["battery", new StoreItem("battery", 1000000000000000, 1000000, 1000000, 1000000)],
+                ["generator", new StoreItem("generator", 200, 1, 1, 1)],
+                ["engine", new StoreItem("engine", 4000, 10, 10, 10)],
+                ["dynamo", new StoreItem("dynamo", 80000, 100, 100, 100)],
+                ["alternator", new StoreItem("alternator", 160000, 1000, 1000, 1000)],
+                ["turbine", new StoreItem("turbine", 3200000, 10000, 10000, 10000)],
+                ["reactor", new StoreItem("reactor", 64000000, 100000, 100000, 100000)],
+                ["battery", new StoreItem("battery", 1280000000, 1000000, 1000000, 1000000)],
 
             ]),
             ownedMap: new Map()

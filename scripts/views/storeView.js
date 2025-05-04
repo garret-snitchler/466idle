@@ -26,7 +26,12 @@ export class StoreView{
 
                 let itemCPS = ViewOperations.createElement('span', 'storeElementText')
                 itemCPS.className = 'itemCPS'
-                itemCPS.textContent = `CPS: ${value.cps}`
+                if (value.name === 'clicker') {
+                itemCPS.textContent = `CPC: ${value.cps}`
+                }
+                else {
+                    itemCPS.textContent = `CPS: ${value.cps}`
+                }
 
                 staticContainer.append(itemDesc, itemCPS)
 
