@@ -10,13 +10,14 @@ export class ClickerView {
 
         this.currencyText = ViewOperations.createElement('p', 'currencyText')
 
+        this.currencyPerClickText = ViewOperations.createElement('p', 'currencyPerClickText')
         this.currencyPerSecondText = ViewOperations.createElement('p', 'currencyPerSecondText')
 
         this.currencyButton = ViewOperations.createElement('button')
         this.currencyButton.textContent = 'Get Currency'
 
         // Add all created elements to the DOM
-        this.sectionRoot.append(this.title, this.currencyText, this.currencyPerSecondText, this.currencyButton)
+        this.sectionRoot.append(this.title, this.currencyText, this.currencyPerClickText, this.currencyPerSecondText, this.currencyButton)
 
         ViewOperations.addStyle('clicker.css')
     }
@@ -24,6 +25,10 @@ export class ClickerView {
     /**DISPLAY STATE VALUE METHODS */
     displayCurrency(currency) {
         this.currencyText.textContent = `$${currency}`
+    }
+
+    displayCPC(currencyPerClick) {
+        this.currencyPerClickText.textContent = `$${currencyPerClick} per click`
     }
 
     displayCPS(currencyPerSecond) {

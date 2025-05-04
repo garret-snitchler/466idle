@@ -8,6 +8,7 @@ export class Controller {
         
         // Send Initial State Values to View
         this.onCurrencyChanged(0)
+        this.onCPCChanged(1)
         this.onCPSChanged(0)
         // we're instantiating with the data that already exists in the model
         this.onStoreChanged(this.model.state.storeMap)
@@ -20,6 +21,7 @@ export class Controller {
 
         // Bind "On Value Changed" Event Listeners
         this.model.bindCurrencyChanged(this.onCurrencyChanged)
+        this.model.bindCPCChanged(this.onCPCChanged)
         this.model.bindCPSChanged(this.onCPSChanged)
         this.model.bindStoreChanged(this.onStoreChanged)
         this.model.bindOwnedMapChanged(this.onOwnedMapChanged)
@@ -40,6 +42,10 @@ export class Controller {
     /**ON STATE VALUE CHANGED EVENT LISTENERS */
     onCurrencyChanged = (currency) => {
         this.clickerView.displayCurrency(currency)
+    }
+
+    onCPCChanged = (currencyPerClick) => {
+        this.clickerView.displayCPC(currencyPerClick)
     }
 
     onCPSChanged = (currencyPerSecond) => {

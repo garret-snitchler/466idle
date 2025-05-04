@@ -5,6 +5,7 @@ p.currencyText {
     margin-bottom: 0px;
 }
 
+p.currencyPerClickText,
 p.currencyPerSecondText {
     margin-bottom: 2rem;
 }
